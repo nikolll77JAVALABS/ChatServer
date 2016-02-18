@@ -18,10 +18,10 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession(false);
+/*        HttpSession session = req.getSession(false);
         if (session==null) {
             System.out.print("BLYA NULL !!!!!");
-        }
+        }*/
 
 
         InputStream is = req.getInputStream();
@@ -44,6 +44,7 @@ public class AddServlet extends HttpServlet {
         }*/
 
         ml.add(mes);
+       // System.out.print(mes);
 
     }
 }

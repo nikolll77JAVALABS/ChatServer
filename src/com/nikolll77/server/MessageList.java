@@ -31,11 +31,17 @@ public class MessageList {
         }
     }
 
-    public synchronized String chatToGson(int n) {
+    public synchronized String chatToGson(int n,String toUser,String toRoom) {
 
         List<Message> res = new ArrayList<Message>();
-        for (int i = n; i < mesList.size(); i++)
-            res.add(mesList.get(i));
+        Message mes;
+        for (int i = n; i < mesList.size(); i++) {
+            mes=mesList.get(i);
+            if (mes.accessible(toUser,toRoom))  res.add(mes);
+
+        }
+
+
 
         if (res.size() > 0) {
             Gson gson = new GsonBuilder().create();

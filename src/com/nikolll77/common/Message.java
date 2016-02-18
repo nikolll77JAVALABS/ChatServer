@@ -16,6 +16,7 @@ public class Message {
     private Date date = new Date();
     private String from;
     private String to;
+    private String room;
     private String text;
 
     public String toGson() {
@@ -61,6 +62,16 @@ public class Message {
 
     }
 
+    public Boolean accessible(String toUser,String toRoom) {
+        boolean res=false;
+
+        if (to.equals(toUser)) res=true;
+        //if (to.length()==0) res=true;
+        if (room.equals(toRoom) && to.equals("")) res=true;
+
+        return res;
+    }
+
 
     public Date getDate() {
         return date;
@@ -92,5 +103,13 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 }

@@ -14,19 +14,22 @@ import java.io.OutputStream;
 public class GetListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       HttpSession session = request.getSession(false);
+/*       HttpSession session = request.getSession(false);
         if (session==null) {
                 System.out.print("BLYA NULL !!!!!");
-        }
+        }*/
 
 
         String s= request.getParameter("from");
+        String chatUser= request.getParameter("user");
+        String chatRoom= request.getParameter("room");
         int i = Integer.parseInt(s);
         MessageList chat = MessageList.getInstance();
-        s=chat.chatToGson(i);
+        s=chat.chatToGson(i,chatUser,chatRoom);
         if (s!=null) {
             OutputStream os = response.getOutputStream();
             os.write(s.getBytes());
+            System.out.print(s);
             //os.close();
         }
     }
